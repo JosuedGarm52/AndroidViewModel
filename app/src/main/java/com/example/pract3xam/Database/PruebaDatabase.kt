@@ -24,7 +24,7 @@ abstract class PruebaDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     PruebaDatabase::class.java,
-                    "materia_kardex_database"
+                    "prueba_database"//cambiar si es otra
                 ).build()
                 INSTANCE = instance
                 // return instance
