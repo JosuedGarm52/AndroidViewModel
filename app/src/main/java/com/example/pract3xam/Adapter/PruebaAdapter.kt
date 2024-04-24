@@ -11,7 +11,7 @@ import com.example.pract3xam.Prueba.Prueba
 import com.example.pract3xam.R
 
 
-class PruebaAdapter(private val xyz: (Prueba) -> Unit) : ListAdapter<Prueba, PruebaAdapter.ViewHolder>(MateriaComparator()){
+class PruebaAdapter(private val xyz: (Prueba) -> Unit) : ListAdapter<Prueba, PruebaAdapter.ViewHolder>(PruebaComparator()){
     class ViewHolder(prueba_item: View, val xyz: (Prueba) -> Unit) : RecyclerView.ViewHolder(prueba_item) {
         val tvCuerpo = prueba_item.findViewById<TextView>(R.id.tvCuerpo)
 
@@ -41,7 +41,7 @@ class PruebaAdapter(private val xyz: (Prueba) -> Unit) : ListAdapter<Prueba, Pru
 
 
     }
-    class MateriaComparator : DiffUtil.ItemCallback<Prueba>() {
+    class PruebaComparator : DiffUtil.ItemCallback<Prueba>() {
         override fun areItemsTheSame(oldItem: Prueba, newItem: Prueba): Boolean {
             return oldItem === newItem
         }

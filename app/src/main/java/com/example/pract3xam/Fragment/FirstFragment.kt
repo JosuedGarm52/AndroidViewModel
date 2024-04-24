@@ -43,6 +43,7 @@ class FirstFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+
         firstFragmentViewModel.pruebaKardex.observe(viewLifecycleOwner, Observer {prueba ->
             prueba?.let{
                 adapter.submitList(it)

@@ -1,5 +1,6 @@
 package com.example.pract3xam.ViewModel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -9,7 +10,8 @@ import kotlinx.coroutines.launch
 
 class SecondFragmentViewModel (private val repository: PruebaRepository): ViewModel() {
 
-    fun insertMateria(materia: Prueba) = viewModelScope.launch{
+    fun insertPrueba(materia: Prueba) = viewModelScope.launch{
+        //Log.d("TAG", "Paso por aqui")
         repository.insert(materia)
     }
 }

@@ -3,6 +3,7 @@ package com.example.pract3xam.Fragment
 import android.content.ContentValues
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import com.example.pract3xam.ViewModel.SecondFragmentViewModel
 import com.example.pract3xam.ViewModel.SecondFragmentViewModelFactory
 import com.example.pract3xam.databinding.FragmentSecondBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlin.math.log
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -48,7 +50,7 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(args.ID == 0){
+        if(args.ID != 0){
             binding.btnGuardar.text = "Editar"
         }
         // Add options menu to the toolbar
@@ -56,14 +58,9 @@ class SecondFragment : Fragment() {
             val id = binding.edtID.text.toString().toInt()
             val Cuerpo = binding.edtCuerpo.text.toString()
 
-            val values = ContentValues().apply {
-                put("ID", id )
-                put("Cuerpo", Cuerpo)
-            }
-
-
-            val materia_kardex = Prueba(id,Cuerpo)
-            secondFragmentViewModel.insertMateria(materia_kardex)
+            val prueba = Prueba(id,Cuerpo)
+            //Log.d("TAG", "Este es un mensaje de depuración")
+            secondFragmentViewModel.insertPrueba(prueba)
 
 
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
