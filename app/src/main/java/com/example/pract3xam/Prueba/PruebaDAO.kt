@@ -12,6 +12,9 @@ interface PruebaDAO {
     @Query("SELECT * FROM Prueba")
     fun getAll(): Flow<List<Prueba>>
 
+    @Query("SELECT * FROM Prueba WHERE ID = :id")
+    suspend fun getPruebaById(id: Int): Prueba?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg m : Prueba)
 

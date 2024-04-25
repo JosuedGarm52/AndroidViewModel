@@ -21,4 +21,9 @@ class PruebaRepository(private val pruebaDAO: PruebaDAO) {
     suspend fun insert(prueba: Prueba) {
         pruebaDAO.insertAll(prueba)
     }
+    //agregado mio ***
+    @WorkerThread
+    suspend fun getPruebaById(id: Int): Prueba? {
+        return pruebaDAO.getPruebaById(id)
+    }
 }

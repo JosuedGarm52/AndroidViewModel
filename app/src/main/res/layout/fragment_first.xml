@@ -8,22 +8,10 @@
     android:padding="16dp"
     tools:context=".Fragment.FirstFragment">
 
-    <Button
-        android:id="@+id/btnSig"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="154dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="150dp"
-        android:text="Llenar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="370dp"
-        android:layout_height="568dp"
+        android:layout_width="374dp"
+        android:layout_height="658dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="1dp"

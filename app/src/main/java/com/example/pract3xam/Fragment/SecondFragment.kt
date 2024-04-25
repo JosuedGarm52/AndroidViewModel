@@ -49,24 +49,35 @@ class SecondFragment : Fragment() {
     val args: SecondFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.edtID.isEnabled = true
 
         if(args.ID != 0){
             binding.btnGuardar.text = "Editar"
+            secondFragmentViewModel.getPruebaById(args.ID).observe(viewLifecycleOwner) { prueba ->
+                if (prueba != null) {
+                    binding.edtID.text = Editable.Factory.getInstance().newEditable(prueba.ID.toString())
+                    binding.edtID.isEnabled = false
+                    binding.edtCuerpo.text = Editable.Factory.getInstance().newEditable(prueba.Cuerpo)
+                }
+            }
         }
         // Add options menu to the toolbar
-        binding.btnGuardar.setOnClickListener{
-            val id = binding.edtID.text.toString().toInt()
-            val Cuerpo = binding.edtCuerpo.text.toString()
+        binding.btnGuardar.setOnClickListener {
+            val a = binding.edtID.text.toString()
+            val b = binding.edtCuerpo.text.toString()
+            val aS = a.toIntOrNull()
 
-            val prueba = Prueba(id,Cuerpo)
-            //Log.d("TAG", "Este es un mensaje de depuración")
-            secondFragmentViewModel.insertPrueba(prueba)
+            if (!a.isNullOrEmpty() && aS != null && !b.isNullOrEmpty()) {
+                val id = aS
+                val Cuerpo = b
 
-
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+                val prueba = Prueba(id, Cuerpo)
+                secondFragmentViewModel.insertPrueba(prueba)
+                findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            } else {
+                Snackbar.make(requireView(), "Los campos no están llenados correctamente", Snackbar.LENGTH_SHORT).show()
+            }
         }
-
-
     }
 
     override fun onDestroyView() {
