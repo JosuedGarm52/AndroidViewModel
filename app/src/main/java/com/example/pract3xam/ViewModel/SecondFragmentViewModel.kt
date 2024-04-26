@@ -21,6 +21,11 @@ class SecondFragmentViewModel (private val repository: PruebaRepository): ViewMo
             emit(repository.getPruebaById(id))
         }
     }
+    fun deletePruebaById(id: Int) = viewModelScope.launch {
+        //Log.d("TAG", "Deleting prueba with ID in SecondViewModel: $id")
+        repository.deletePruebaById(id)
+    }
+
 }
 
 class SecondFragmentViewModelFactory(private val repository: PruebaRepository) : ViewModelProvider.Factory {

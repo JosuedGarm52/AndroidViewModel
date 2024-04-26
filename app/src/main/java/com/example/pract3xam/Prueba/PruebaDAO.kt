@@ -15,6 +15,9 @@ interface PruebaDAO {
     @Query("SELECT * FROM Prueba WHERE ID = :id")
     suspend fun getPruebaById(id: Int): Prueba?
 
+    @Query("DELETE FROM Prueba WHERE ID = :id")
+    suspend fun deletePruebaById(id: Int)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg m : Prueba)
 

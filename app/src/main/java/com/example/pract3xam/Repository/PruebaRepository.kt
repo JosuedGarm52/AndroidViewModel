@@ -1,5 +1,6 @@
 package com.example.pract3xam.Repository
 
+import android.util.Log
 import androidx.annotation.WorkerThread
 import com.example.pract3xam.Prueba.Prueba
 import com.example.pract3xam.Prueba.PruebaDAO
@@ -25,5 +26,10 @@ class PruebaRepository(private val pruebaDAO: PruebaDAO) {
     @WorkerThread
     suspend fun getPruebaById(id: Int): Prueba? {
         return pruebaDAO.getPruebaById(id)
+    }
+    @WorkerThread
+    suspend fun deletePruebaById(id: Int) {
+        //Log.d("TAG", "Deleting prueba with ID: $id")
+        pruebaDAO.deletePruebaById(id)
     }
 }

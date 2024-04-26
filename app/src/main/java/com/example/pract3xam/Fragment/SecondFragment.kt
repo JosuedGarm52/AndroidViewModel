@@ -50,6 +50,7 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.edtID.isEnabled = true
+        binding.btnBorrar.isEnabled = true
 
         if(args.ID != 0){
             binding.btnGuardar.text = "Editar"
@@ -60,6 +61,8 @@ class SecondFragment : Fragment() {
                     binding.edtCuerpo.text = Editable.Factory.getInstance().newEditable(prueba.Cuerpo)
                 }
             }
+        }else{
+            binding.btnBorrar.isEnabled = false
         }
         // Add options menu to the toolbar
         binding.btnGuardar.setOnClickListener {
@@ -76,6 +79,13 @@ class SecondFragment : Fragment() {
                 findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
             } else {
                 Snackbar.make(requireView(), "Los campos no están llenados correctamente", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+        binding.btnBorrar.setOnClickListener {
+            if(args.ID != 0){
+                //Log.d("TAG", "ID en SecondFragment: ${args.ID}")
+                secondFragmentViewModel.deletePruebaById(args.ID)
+                findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
             }
         }
     }
